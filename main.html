@@ -3,68 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>메뉴 바 예제</title>
-  <style>
-    /* 메뉴 스타일 */
-    ul.menu {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      background-color: #f0f0f0;
-    }
-
-    ul.menu li {
-      padding: 10px 20px;
-      cursor: pointer;
-      border-right: 1px solid #ccc;
-    }
-
-    ul.menu li:last-child {
-      border-right: none;
-    }
-
-    /* 선택된 메뉴 스타일 */
-    ul.menu li.selected {
-      background-color: #ccc;
-    }
-  </style>
+  <title>메뉴와 콘텐츠 출력</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <ul class="menu">
-    <li onclick="loadPage('timetable')">시간표</li>
-    <li onclick="loadPage('calculator')">계산기</li>
-  </ul>
-  <div id="content">
-    <!-- 페이지가 로드되는 부분 -->
+  <div class="container">
+    <div class="menu">
+      <ul>
+        <li><a href="#" onclick="showTimeTable()">시간표</a></li>
+        <li><a href="#" onclick="showCalculator()">계산기</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <iframe id="output" src="" frameborder="0"></iframe>
+    </div>
   </div>
 
   <script>
-    // 페이지 로드 함수
-    function loadPage(pageName) {
-      const contentDiv = document.getElementById('content');
-      let pageUrl;
+    function showTimeTable() {
+      document.getElementById("output").src = "https://yuoong444.github.io/main/time";
+    }
 
-      // 페이지 이름에 따라 콘텐츠 설정
-      switch (pageName) {
-        case 'timetable':
-          // 시간표 출력
-          pageUrl = 'https://yuoong444.github.io/main/time'; // 계산기 페이지 URL
-          break;
-        case 'calculator':
-          pageUrl = 'https://yuoong444.github.io/main/calc'; // 계산기 페이지 URL
-          break;
-
-        default:
-          contentDiv.innerHTML = ''; // 예외 처리
-          break;
-      }
-
-      // 페이지 로드
-      if (pageUrl) {
-        contentDiv.innerHTML = `<iframe src="${pageUrl}" width="100%" height="100%"></iframe>`;
-      }
+    function showCalculator() {
+      document.getElementById("output").src = "https://yuoong444.github.io/calcc/11";
     }
   </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .menu {
+      width: 150px;
+    }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu li {
+      margin-bottom: 10px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    #output {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+  </style>
 </body>
 </html>

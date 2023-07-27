@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>계산기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+		function numberWithCommas(x) {
+			  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+        function calculate() {
+            var inputText1 = document.getElementById('inputText1').value;
+            var inputText2 = document.getElementById('inputText2').value;
+            var inputText3 = document.getElementById('inputText3').value;
+
+
+            var result0 = eval(inputText1*inputText3);
+
+            var result1 = Math.round(eval(inputText2*0.055));
+
+            var result11 = Math.round(result1);
+
+            var result2 = eval(inputText2-result11);
+            var result3 = eval(result2-result0);
+
+
+			var formattedNumber1 = numberWithCommas(result0);
+			var formattedNumber2 = numberWithCommas(result1);
+			var formattedNumber3 = numberWithCommas(result11);
+			var formattedNumber4 = numberWithCommas(result2);
+			var formattedNumber5 = numberWithCommas(result3);
+
+
+            document.getElementById('result1').innerHTML = formattedNumber2;
+            document.getElementById('result2').innerHTML = formattedNumber4;
+            document.getElementById('result3').innerHTML = formattedNumber5;
+
+            document.getElementById('result0').innerHTML = formattedNumber1;
+
+        }
+
+
+    </script>
+
+
+
+
+</head>
+<body>
+    <h1>내판가 계산기</h1>
+
+
+
+
+
+
+<table style="max-width:720px; border-collapse: collapse; border: 0px; width: 100%; height: 80px;">
+<tbody>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:2px solid #666;">&nbsp;&nbsp;내판가</td>
+<td style="width: 100%; height: 32px; border-top:2px solid #666;"><input type="number" id="inputText1" placeholder="내판가 입력" style="text-align:right; border:1px solid #ddd; border-radius: 30px;"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;">&nbsp;&nbsp;판매 수량</td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;"><input type="number" id="inputText3" placeholder="판매수량 입력" style="text-align: right; border:1px solid #ddd; border-radius: 30px;"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; border-bottom:2px solid #666;">&nbsp;&nbsp;판매 금액</td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; border-bottom:2px solid #666;text-align:right;" id="result0"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;"></td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;"> </td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:2px solid #666;">&nbsp;&nbsp;거래소 등록 금액</td>
+<td style="width: 100%; height: 32px; border-top:2px solid #666;"><input type="number" id="inputText2" placeholder="거래소 등록 입력" style="text-align:right; border:1px solid #ddd; border-radius: 30px;"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;">&nbsp;&nbsp;수수료 금액(5.5%) (자동계산) </td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; text-align:right;" id="result1"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;">&nbsp;&nbsp;거래소 정산 금액</td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; text-align:right;" id="result2"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; border-bottom:2px solid #666;" >&nbsp;&nbsp;페이백 금액</td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd; border-bottom:2px solid #666; color:red; text-align:right;" id="result3"></td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;"></td>
+<td style="width: 100%; height: 32px; border-top:1px solid #ddd;"> </td>
+</tr>
+<tr style="height: 32px;">
+<td style="width: 100%; height: 32px; border-top:2px solid #666; border-bottom:2px solid #666;">&nbsp;&nbsp;** 수수료는 구매자 부담</td>
+<td style="width: 100%; height: 32px; border-top:2px solid #666; border-bottom:2px solid #666; text-align:right;">수수료 5.5%</td>
+</tr>
+</tbody>
+</table>
+</br> </br>
+<button style = "width:100%; max-width:720px; border-radius: 40px; border:0; background-color: #1a1097; color:#fff;" onclick="calculate()"></br>계산</br></br></button>
+</br></br></br>
+   made by 유웅. design by 랏. </br></br>
+   <span style="font-size: 6px;">버그로인한 페이백 금액을 잘못산정하는경우 개발자는 책임지지않습니다.</span><br>
+   <span style="font-size: 6px;">디자인 피드백은 받지 않습니다..</span>
+
+</body>
+</html>

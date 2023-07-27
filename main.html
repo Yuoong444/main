@@ -15,7 +15,7 @@
       </ul>
     </div>
     <div class="content">
-      <iframe id="output" src="" frameborder="0"></iframe>
+      <iframe id="output" src="https://yuoong444.github.io/main/time" frameborder="0"></iframe>
     </div>
   </div>
 
@@ -27,6 +27,11 @@
     function showCalculator() {
       document.getElementById("output").src = "https://yuoong444.github.io/calcc/11";
     }
+
+    // 페이지 로드 시 시간표를 보여주도록 설정
+    window.onload = function() {
+      showTimeTable();
+    };
   </script>
 
   <style>
@@ -65,7 +70,7 @@
 
     #output {
       width: 100%;
-      height: 500px;
+      height: 1000px;
       border: none;
     }
   </style>

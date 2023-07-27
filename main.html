@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴 바 예제</title>
+  <style>
+    /* 메뉴 스타일 */
+    ul.menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      background-color: #f0f0f0;
+    }
+
+    ul.menu li {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-right: 1px solid #ccc;
+    }
+
+    ul.menu li:last-child {
+      border-right: none;
+    }
+
+    /* 선택된 메뉴 스타일 */
+    ul.menu li.selected {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li onclick="loadPage('timetable')">시간표</li>
+    <li onclick="loadPage('calculator')">계산기</li>
+  </ul>
+  <div id="content">
+    <!-- 페이지가 로드되는 부분 -->
+  </div>
+
+  <script>
+    // 페이지 로드 함수
+    function loadPage(pageName) {
+      const contentDiv = document.getElementById('content');
+      let pageUrl;
+
+      // 페이지 이름에 따라 콘텐츠 설정
+      switch (pageName) {
+        case 'timetable':
+          // 시간표 출력
+          pageUrl = 'https://yuoong444.github.io/main/time'; // 계산기 페이지 URL
+          break;
+        case 'calculator':
+          pageUrl = 'https://yuoong444.github.io/main/calc'; // 계산기 페이지 URL
+          break;
+
+        default:
+          contentDiv.innerHTML = ''; // 예외 처리
+          break;
+      }
+
+      // 페이지 로드
+      if (pageUrl) {
+        contentDiv.innerHTML = `<iframe src="${pageUrl}" width="100%" height="500px"></iframe>`;
+      }
+    }
+  </script>
+</body>
+</html>

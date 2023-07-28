@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="menu-container">
+  <div class="menu-container" id="menuContainer">
     <div class="menu-header">
       메뉴
     </div>
@@ -16,7 +16,7 @@
       <li><a href="#" onclick="showCalculator()">계산기</a></li>
     </ul>
   </div>
-  <div class="content">
+  <div class="content" id="content">
     <iframe id="output" src="https://yuoong444.github.io/main/time" frameborder="0"></iframe>
   </div>
   <button class="toggle-button" onclick="toggleMenuVisibility()">메뉴바 숨기기/보이기</button>
@@ -31,8 +31,10 @@
     }
 
     function toggleMenuVisibility() {
-      const menuContainer = document.querySelector(".menu-container");
+      const menuContainer = document.getElementById("menuContainer");
+      const content = document.getElementById("content");
       menuContainer.classList.toggle("hide");
+      content.classList.toggle("shift");
     }
 
     // 페이지 로드 시 시간표를 보여주도록 설정
@@ -94,11 +96,16 @@
     .content {
       margin-left: 60px;
       padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    .content.shift {
+      margin-left: 0;
     }
 
     #output {
       width: 100%;
-      height: 1500px;
+      height: 100%;
       border: none;
     }
 

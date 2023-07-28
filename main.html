@@ -1,153 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Baram_y</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baram_y</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+        #menu {
+            width: 100px; /* 메뉴의 가로 너비를 100px로 고정 */
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #menu h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #007bff;
+        }
+        #menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        #menu li {
+            margin-bottom: 10px;
+        }
+        #menu li:last-child {
+            margin-bottom: 0;
+        }
+        #menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        #menu a:hover {
+            color: #007bff;
+        }
+        #content {
+            width: 75%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        #toggle-btn {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
 
-    .menu-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-
-    .menu-wrapper {
-      display: inline-block;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-
-    .menu {
-      width: 150px;
-      background-color: #f2f2f2;
-      height: 100%;
-    }
-
-    .menu ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .menu li {
-      padding: 10px;
-      text-align: center;
-    }
-
-    .menu li a {
-      color: #333;
-      text-decoration: none;
-    }
-
-    .menu li a:hover {
-      background-color: #ddd;
-    }
-
-    .hide-button {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 30px;
-      height: 30px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      line-height: 30px;
-      cursor: pointer;
-    }
-
-    .menu-container.menu-hidden .menu-wrapper {
-      transform: translateX(-100%);
-    }
-
-    .menu-container.menu-hidden .hide-button {
-      right: -35px;
-    }
-
-    /* 출력되는 내용이 메뉴 목록을 가리지 않도록 설정 */
-    .content-container {
-      position: relative;
-      z-index: 0; /* 출력되는 내용을 메뉴 목록 뒤에 표시 */
-      margin-left: 150px; /* 메뉴의 너비만큼 여백 설정 */
-      transition: margin-left 0.3s ease; /* 출력 화면의 이동에 애니메이션 효과 적용 */
-    }
-
-    .content {
-      padding: 20px;
-      background-color: #fff;
-    }
-
-    /* 메뉴 숨김 시 화면 출력 페이지도 함께 좌측 상단으로 이동 */
-    .menu-container.menu-hidden .content-container {
-      margin-left: 0;
-    }
-  </style>
+        /* Media Queries for Responsive Design */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #menu, #content {
+                width: 100%;
+            }
+            #toggle-btn {
+                top: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="menu-container" id="menu-container">
-    <div class="menu-wrapper">
-      <div class="menu" id="menu">
-        <ul>
-          <li><a href="#" onclick="showTimetable()">시간표</a></li>
-          <li><a href="#" onclick="showCalculator()">계산기</a></li>
-        </ul>
-        <div class="hide-button" onclick="toggleMenu()">X</div>
-      </div>
+    <div id="toggle-container">
+        <!-- Menu Toggle Button -->
+        <button id="toggle-btn" onclick="toggleMenu()">메뉴</button>
+
+        <div id="menu">
+            <ul>
+                <li><a href="https://yuoong444.github.io/main/time" target="content">시간표</a></li>
+                <li><a href="https://yuoong444.github.io/main/calc" target="content">계산기</a></li>
+                <!-- 다른 메뉴 항목들을 추가하거나 제거할 수 있습니다. -->
+            </ul>
+        </div>
     </div>
-  </div>
-
-  <div class="content-container" id="content-container">
-    <div class="content" id="content">
-      <!-- 여기에 시간표와 계산기 내용이 표시될 부분 -->
+    <div id="content">
+        <iframe name="content" src="https://yuoong444.github.io/main/time" style="width: 100%; height: 1500px; border: none;"></iframe>
     </div>
-  </div>
 
-  <script>
-    let isMenuHidden = false;
-
-    function showTimetable() {
-      fetch('https://yuoong444.github.io/main/time')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('content').innerHTML = data;
-        });
-    }
-
-    function showCalculator() {
-      fetch('https://yuoong444.github.io/main/calc')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('content').innerHTML = data;
-        });
-    }
-
-    function hideMenu() {
-      const menuContainer = document.getElementById('menu-container');
-      menuContainer.classList.add('menu-hidden');
-      document.getElementById('content-container').style.marginLeft = '0';
-      isMenuHidden = true;
-    }
-
-    function toggleMenu() {
-      const menuContainer = document.getElementById('menu-container');
-      const contentContainer = document.getElementById('content-container');
-      if (isMenuHidden) {
-        menuContainer.classList.remove('menu-hidden');
-        contentContainer.style.marginLeft = '150px';
-        isMenuHidden = false;
-      } else {
-        menuContainer.classList.add('menu-hidden');
-        contentContainer.style.marginLeft = '0';
-        isMenuHidden = true;
-      }
-    }
-
-    // 첫 페이지로 시간표를 출력
-    showTimetable();
-  </script>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                document.getElementById("toggle-btn").innerText = "메뉴";
+            } else {
+                menu.style.display = "none";
+                document.getElementById("toggle-btn").innerText = "메뉴";
+            }
+        }
+    </script>
 </body>
 </html>

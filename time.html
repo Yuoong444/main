@@ -187,7 +187,10 @@
       const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
       const currentDate = now.toLocaleDateString();
       const currentDayOfWeek = daysOfWeek[now.getDay()]; // getDay()는 일요일부터 0으로 시작
-      const currentTime = now.toLocaleTimeString();
+      const currentHour = now.getHours().toString().padStart(2, '0');
+      const currentMinute = now.getMinutes().toString().padStart(2, '0');
+      const currentSecond = now.getSeconds().toString().padStart(2, '0');
+      const currentTime = currentHour + ":" + currentMinute + ":" + currentSecond;
       document.getElementById("currentDate").innerText = "오늘 일자: " + currentDate + " (" + currentDayOfWeek + ")";
       document.getElementById("currentTime").innerText = "현재 시간: " + currentTime;
     }
@@ -195,13 +198,33 @@
     // 초 단위로 시간 업데이트
     function updateSeconds() {
       const now = new Date();
-      const currentTime = now.toLocaleTimeString();
+      const currentHour = now.getHours().toString().padStart(2, '0');
+      const currentMinute = now.getMinutes().toString().padStart(2, '0');
+      const currentSecond = now.getSeconds().toString().padStart(2, '0');
+      const currentTime = currentHour + ":" + currentMinute + ":" + currentSecond;
       document.getElementById("currentTime").innerText = "현재 시간: " + currentTime;
     }
 
     // 초 단위로 업데이트 실행 (1000ms = 1초)
     setInterval(updateSeconds, 1000);
 
+    // 현재 시간에 해당하는 테이블 셀에 강조 효과 주는 함수
+    function highlightCurrentCell() {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentDay = now.getDay(); // JavaScript의 getDay()는 일요일부터 0으로 시작합니다.
+      const table = document.getElementsByTagName("table")[0];
+      const rows = table.getElementsByTagName("tr");
+      
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        for (let j = 0; j < cells.length; j++) {
+          if (j === currentDay && cells[j].innerText.startsWith(currentHour.toString().padStart(2, '0'))) {
+            cells[j].classList.add("highlight");
+          }
+        }
+      }
+    }
 
     showCurrentDateAndTime();
     highlightCurrentCell();

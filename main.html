@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>_바연</title>
+  <title>Baram_y</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="menu">
-      <ul>
-        <li><a href="#" onclick="showTimeTable()">시간표</a></li>
-        <li><a href="#" onclick="showCalculator()">계산기</a></li>
-      </ul>
+  <div class="menu-container">
+    <div class="menu-header">
+      메뉴
     </div>
-    <div class="content">
-      <iframe id="output" src="https://yuoong444.github.io/main/time" frameborder="0"></iframe>
-    </div>
+    <ul class="menu-items">
+      <li><a href="#" onclick="showTimeTable()">시간표</a></li>
+      <li><a href="#" onclick="showCalculator()">계산기</a></li>
+    </ul>
   </div>
+  <div class="content">
+    <iframe id="output" src="https://yuoong444.github.io/main/time" frameborder="0"></iframe>
+  </div>
+  <button class="toggle-button" onclick="toggleMenuVisibility()">메뉴바 숨기기/보이기</button>
 
   <script>
     function showTimeTable() {
@@ -26,6 +28,11 @@
 
     function showCalculator() {
       document.getElementById("output").src = "https://yuoong444.github.io/calcc/11";
+    }
+
+    function toggleMenuVisibility() {
+      const menuContainer = document.querySelector(".menu-container");
+      menuContainer.classList.toggle("hide");
     }
 
     // 페이지 로드 시 시간표를 보여주도록 설정
@@ -37,19 +44,34 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    .container {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
+    .menu-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 100%;
+      background-color: #f1f1f1;
+      transition: width 0.3s;
+      overflow: hidden;
     }
 
-    .menu {
-      width: 150px;
+    .menu-container.hide {
+      width: 0;
     }
 
-    .menu ul {
+    .menu-header {
+      background-color: #555;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu-items {
       list-style: none;
       padding: 0;
     }
@@ -62,16 +84,31 @@
       text-decoration: none;
       color: #333;
       display: block;
+      padding: 5px;
+    }
+
+    .menu a:hover {
+      background-color: #ddd;
     }
 
     .content {
-      flex: 1;
+      margin-left: 60px;
+      padding: 20px;
     }
 
     #output {
       width: 100%;
-      height: 1000px;
+      height: 1500px;
       border: none;
+    }
+
+    .toggle-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
     }
   </style>
 </body>

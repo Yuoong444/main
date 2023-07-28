@@ -179,6 +179,7 @@
   </tbody>
 </table>
 
+
   <script>
     // 현재 날짜와 시간을 표시하는 함수
     function showCurrentDateAndTime() {
@@ -205,63 +206,54 @@
     }
 
     // 초 단위로 업데이트 실행 (1000ms = 1초)
-    setInterval(updateSeconds, 1000);
+    setInterval(function () {
+      updateSeconds();
+      highlightCurrentCell(); // Add this line to update the highlighting every second.
+    }, 1000);
 
-  // 셀 강조 함수
-  function highlightCurrentCell() {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
+// 셀 강조 함수
+function highlightCurrentCell() {
+  const now = new Date();
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
 
-    // 시간표의 첫 번째 열에 해당하는 시간 정보를 배열로 가져옴
-    const scheduleTimes = [4, 8, 12, 16, 20, 21, 21, 22, 23, 23, 23, 0];
+  // 시간표의 첫 번째 열에 해당하는 시간 정보를 배열로 가져옴
+  const scheduleTimes = [4, 8, 12, 16, 20, 21, 21, 22, 23, 23, 23, 0];
 
-    // 시간표의 두 번째 열부터 각 요일의 스케줄 정보를 2차원 배열로 가져옴
-    const schedule = [
-      // Your schedule data...
-    ];
+      // 시간표의 두 번째 열부터 각 요일의 스케줄 정보를 2차원 배열로 가져옴
+      const schedule = [
+        ["해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도"],
+        ["해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도"],
+        ["용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도", "용왕 / 해골 / 갱도"],
+        ["해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도"],
+        ["해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도"],
+        ["환섬 / 용왕", "인면수 / 용왕", "용왕 / 해골 / 갱도", "새우니 / 인면수 / 용왕", "환섬 / 용왕", "새우니 / 용왕", "용왕 / 해골 / 갱도"],
+        ["", "백두산 월드 집결지", "지하국대적", "백두 월드 집결지", "", "지하국대적", ""],
+        ["", "", "", "", "도삭산 (월드 / 일반)", "", "공성전 (월드 / 일반)"],
+        ["선계도삭산", "선계도삭산", "선계도삭산", "선계도삭산", "천계도삭산", "", "폭룡 레이드 (극악)"],
+        ["암흑룡인 / 폭룡의환영", "백두선인 / 폭룡의환영", "암흑룡인 / 폭룡의환영", "백두선인 / 폭룡의환영", "암흑룡인 / 폭룡의환영", "백두선인 / 폭룡의환영", "폭룡의환영"],
+        ["해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도", "해골 / 갱도"],
+      ];
 
-    const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-    let currentDayOfWeekIndex = now.getDay(); // 일요일부터 0으로 시작
 
-    // 현재 요일과 시간에 해당하는 다음 시간대의 행과 열 인덱스를 찾음
-    let nextRowIndex = -1;
-    let nextColIndex = -1;
+  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const currentDayOfWeekIndex = now.getDay(); // 오늘의 요일을 가져옴
 
-    for (let i = 0; i < scheduleTimes.length; i++) {
-      if (currentHour < scheduleTimes[i] || (currentHour === scheduleTimes[i] && currentMinute < 30)) {
-        nextRowIndex = i;
-        break;
-      }
-    }
-
-    if (nextRowIndex === -1) {
-      // 다음 날 첫 시간대의 인덱스
-      nextRowIndex = 0;
-      currentDayOfWeekIndex = (currentDayOfWeekIndex + 1) % 7;
-    }
-
-    // 현재 요일과 시간에 해당하는 셀의 인덱스
-    nextColIndex = currentDayOfWeekIndex + 1;
-
-    // 강조 효과를 제거 (이전에 강조된 셀이 있을 수 있으므로)
-    const highlightedCells = document.getElementsByClassName("highlight");
-    while (highlightedCells.length > 0) {
-      highlightedCells[0].classList.remove("highlight");
-    }
-
-    // 다음 시간대의 셀에 강조 효과를 추가
-    const nextCell = document.querySelector(`table tr:nth-child(${nextRowIndex + 2}) td:nth-child(${nextColIndex + 1})`);
-    nextCell.classList.add("highlight");
+  // 강조 효과를 제거 (이전에 강조된 셀이 있을 수 있으므로)
+  const highlightedCells = document.getElementsByClassName("highlight");
+  while (highlightedCells.length > 0) {
+    highlightedCells[0].classList.remove("highlight");
   }
 
-  showCurrentDateAndTime();
+  // 현재 시간에 해당하는 셀의 인덱스
+  const nextRowIndex = scheduleTimes.findIndex(time => currentHour < time || (currentHour === time && currentMinute < 30));
+  const nextColIndex = currentDayOfWeekIndex ;
 
-  // 초 단위로 업데이트 실행 (1000ms = 1초)
-  setInterval(function () {
-    updateSeconds();
-    highlightCurrentCell(); // Add this line to update the highlighting every second.
-  }, 1000);
-
-</script>
-</body
+  // 다음 시간대의 셀에 강조 효과를 추가
+  const nextCell = document.querySelector(`table tr:nth-child(${nextRowIndex + 2}) td:nth-child(${nextColIndex + 1})`);
+  nextCell.classList.add("highlight");
+}
+    showCurrentDateAndTime(); // 페이지 로드 시에 날짜와 시간 표시
+  </script>
+</body>
+</html>

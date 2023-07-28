@@ -1,60 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
 
-  /* 테이블 스타일 */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    margin-top: 20px;
-  }
-  
-  /* 셀 스타일 */
-  th {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
+    /* 테이블 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-top: 20px;
+    }
 
-  td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
+    /* 셀 스타일 */
+    th {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
 
-  /* 짝수 행 배경색 */
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+    td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
 
-  /* 강조 효과 */
-  .highlight {
-    background-color: #ffcccb;
-    font-weight: bold;
-  }
+    /* 짝수 행 배경색 */
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-  /* 상단 날짜 및 시간 스타일 */
-  #currentInfo {
-    font-size: 18px;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-</style>
+    /* 강조 효과 */
+    .highlight {
+      background-color: #ffcccb;
+      font-weight: bold;
+    }
+
+    /* 상단 날짜 및 시간 스타일 */
+    #currentInfo {
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    /* 반응형 스타일 */
+    #scheduleTableWrapper {
+      overflow-x: auto;
+    }
+
+    #scheduleTableWrapper table {
+      width: auto;
+    }
+  </style>
 </head>
 <body>
   <div id="currentInfo">
     <span id="currentDate"></span> <br>
     <span id="currentTime"></span>
   </div>
-<table width="1025">
+  <div id="scheduleTableWrapper">
+    <table>
   <tbody>
     <tr>
       <td width="66">&nbsp;</td>
@@ -177,7 +187,9 @@
       <td>해골 / 갱도</td>
     </tr>
   </tbody>
-</table>
+
+    </table>
+  </div>
 
 
   <script>
@@ -255,5 +267,6 @@ function highlightCurrentCell() {
 }
     showCurrentDateAndTime(); // 페이지 로드 시에 날짜와 시간 표시
   </script>
+
 </body>
 </html>

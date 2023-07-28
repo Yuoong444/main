@@ -1,14 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
 <style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+
   /* 테이블 스타일 */
   table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
     font-size: 14px;
+    margin-top: 20px;
   }
   
   /* 셀 스타일 */
-  td, th {
+  th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  td {
     padding: 8px;
     text-align: center;
     border: 1px solid #ccc;
@@ -19,24 +35,36 @@
     background-color: #f2f2f2;
   }
 
-  /* 요일 행 스타일 */
-  tr:first-child {
+  /* 강조 효과 */
+  .highlight {
+    background-color: #ffcccb;
     font-weight: bold;
-    background-color: #f9f9f9;
+  }
+
+  /* 상단 날짜 및 시간 스타일 */
+  #currentInfo {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
   }
 </style>
-
-<table>
+</head>
+<body>
+  <div id="currentInfo">
+    <span id="currentDate"></span> <br>
+    <span id="currentTime"></span>
+  </div>
+<table width="1025">
   <tbody>
     <tr>
-      <th>시간</th>
-      <th>월</th>
-      <th>화</th>
-      <th>수</th>
-      <th>목</th>
-      <th>금</th>
-      <th>토</th>
-      <th>일</th>
+      <td width="66">&nbsp;</td>
+      <td width="137">월</td>
+      <td width="137">화</td>
+      <td width="137">수</td>
+      <td width="137">목</td>
+      <td width="137">금</td>
+      <td width="137">토</td>
+      <td width="137">일</td>
     </tr>
     <tr>
       <td>04:00</td>
@@ -48,105 +76,135 @@
       <td>해골 / 갱도</td>
       <td>해골 / 갱도</td>
     </tr>
-<tr>
-<td>08:00</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-</tr>
-<tr>
-<td>12:00</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>용왕 / 해골 / 갱도</td>
-</tr>
-<tr>
-<td>16:00</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-</tr>
-<tr>
-<td>20:00</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-</tr>
-<tr>
-<td>21:00</td>
-<td>환섬 / 용왕</td>
-<td>인면수 / 용왕</td>
-<td>용왕 / 해골 / 갱도</td>
-<td>새우니 / 인면수 / 용왕</td>
-<td>환섬 / 용왕</td>
-<td>새우니 / 용왕</td>
-<td>용왕 / 해골 / 갱도</td>
-</tr>
-<tr>
-<td>21:30</td>
-<td>&nbsp;</td>
-<td>백두산 월드 집결지</td>
-<td>지하국대적</td>
-<td>백두 월드 집결지</td>
-<td>&nbsp;</td>
-<td>지하국대적</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>22:00</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>도삭산 (월드 / 일반)</td>
-<td>&nbsp;</td>
-<td>공성전 (월드 / 일반)</td>
-</tr>
-<tr>
-<td>23:00</td>
-<td>선계도삭산</td>
-<td>선계도삭산</td>
-<td>선계도삭산</td>
-<td>선계도삭산</td>
-<td>천계도삭산</td>
-<td>&nbsp;</td>
-<td>폭룡 레이드 (극악)</td>
-</tr>
-<tr>
-<td>23:30</td>
-<td>암흑룡인 / 폭룡의환영</td>
-<td>백두선인 / 폭룡의환영</td>
-<td>암흑룡인 / 폭룡의환영</td>
-<td>백두선인 / 폭룡의환영</td>
-<td>암흑룡인 / 폭룡의환영</td>
-<td>백두선인 / 폭룡의환영</td>
-<td>폭룡의환영</td>
-</tr>
-<tr>
-<td>00:10</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-<td>해골 / 갱도</td>
-</tr>
+    <tr>
+      <td>08:00</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+    </tr>
+    <tr>
+      <td>12:00</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>용왕 / 해골 / 갱도</td>
+    </tr>
+    <tr>
+      <td>16:00</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+    </tr>
+    <tr>
+      <td>20:00</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+    </tr>
+    <tr>
+      <td>21:00</td>
+      <td>환섬 / 용왕</td>
+      <td>인면수 / 용왕</td>
+      <td>용왕 / 해골 / 갱도</td>
+      <td>새우니 / 인면수 / 용왕</td>
+      <td>환섬 / 용왕</td>
+      <td>새우니 / 용왕</td>
+      <td>용왕 / 해골 / 갱도</td>
+    </tr>
+    <tr>
+      <td>21:30</td>
+      <td>&nbsp;</td>
+      <td>백두산 월드 집결지</td>
+      <td>지하국대적</td>
+      <td>백두 월드 집결지</td>
+      <td>&nbsp;</td>
+      <td>지하국대적</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>22:00</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>도삭산 (월드 / 일반)</td>
+      <td>&nbsp;</td>
+      <td>공성전 (월드 / 일반)</td>
+    </tr>
+    <tr>
+      <td>23:00</td>
+      <td>선계도삭산</td>
+      <td>선계도삭산</td>
+      <td>선계도삭산</td>
+      <td>선계도삭산</td>
+      <td>천계도삭산</td>
+      <td>&nbsp;</td>
+      <td>폭룡 레이드 (극악)</td>
+    </tr>
+    <tr>
+      <td>23:30</td>
+      <td>암흑룡인 / 폭룡의환영</td>
+      <td>백두선인 / 폭룡의환영</td>
+      <td>암흑룡인 / 폭룡의환영</td>
+      <td>백두선인 / 폭룡의환영</td>
+      <td>암흑룡인 / 폭룡의환영</td>
+      <td>백두선인 / 폭룡의환영</td>
+      <td>폭룡의환영</td>
+    </tr>
+    <tr>
+      <td>00:10</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+      <td>해골 / 갱도</td>
+    </tr>
   </tbody>
 </table>
+
+
+  <script>
+    // 현재 날짜와 시간을 표시하는 함수
+    function showCurrentDateAndTime() {
+      const now = new Date();
+      const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+      const currentDate = now.toLocaleDateString();
+      const currentDayOfWeek = daysOfWeek[now.getDay()]; // getDay()는 일요일부터 0으로 시작
+      const currentTime = now.toLocaleTimeString();
+      document.getElementById("currentDate").innerText = "오늘 일자: " + currentDate + " (" + currentDayOfWeek + ")";
+      document.getElementById("currentTime").innerText = "현재 시간: " + currentTime;
+    }
+
+    // 초 단위로 시간 업데이트
+    function updateSeconds() {
+      const now = new Date();
+      const currentTime = now.toLocaleTimeString();
+      document.getElementById("currentTime").innerText = "현재 시간: " + currentTime;
+    }
+
+    // 초 단위로 업데이트 실행 (1000ms = 1초)
+    setInterval(updateSeconds, 1000);
+
+
+    showCurrentDateAndTime();
+    highlightCurrentCell();
+  </script>
+</body>
+</html>

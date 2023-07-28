@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Baram_y</title>
+  <title>웹페이지 메뉴 바</title>
   <style>
     body {
       margin: 0;
@@ -125,6 +125,13 @@
         });
     }
 
+    function hideMenu() {
+      const menuContainer = document.getElementById('menu-container');
+      menuContainer.classList.add('menu-hidden');
+      document.getElementById('content-container').style.marginLeft = '0';
+      isMenuHidden = true;
+    }
+
     function toggleMenu() {
       const menuContainer = document.getElementById('menu-container');
       const contentContainer = document.getElementById('content-container');
@@ -138,6 +145,9 @@
         isMenuHidden = true;
       }
     }
+
+    // 첫 페이지로 시간표를 출력
+    showTimetable();
   </script>
 </body>
 </html>
